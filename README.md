@@ -11,7 +11,8 @@ This project is a backend API built with **Node.js**, **Express.js**, **SQLite**
 The project includes:  
 ✅ **Multiple API files** for modular structure  
 ✅ **Separate database files** for each dataset  
-✅ **Sequelize integration** for database operations
+✅ **Sequelize integration** for database operations  
+✅ **Database seeding API** to populate sample data
 
 ---
 
@@ -51,7 +52,6 @@ The project includes:
 │── index.js
 │── package.json
 │── README.md
-
 ```
 
 ---
@@ -67,7 +67,7 @@ npm install
 ### 2️⃣ Start the Server
 
 ```bash
-node app.js
+node index.js
 ```
 
 By default, the server runs on **port 3010**.
@@ -78,12 +78,13 @@ By default, the server runs on **port 3010**.
 
 ### 🎵 Track API (`trackAPI.js`)
 
-| Method | Endpoint             | Description        |
-| ------ | -------------------- | ------------------ |
-| GET    | `/tracks`            | Get all tracks     |
-| POST   | `/tracks/new`        | Add a new track    |
-| POST   | `/tracks/update/:id` | Update track by ID |
-| POST   | `/tracks/delete/:id` | Delete track by ID |
+| Method | Endpoint             | Description                           |
+| ------ | -------------------- | ------------------------------------- |
+| GET    | `/tracks`            | Get all tracks                        |
+| POST   | `/tracks/new`        | Add a new track                       |
+| POST   | `/tracks/update/:id` | Update track by ID                    |
+| POST   | `/tracks/delete`     | Delete track by ID                    |
+| POST   | `/tracks/seed`       | Seed tracks database with sample data |
 
 #### Example Requests:
 
@@ -93,53 +94,23 @@ By default, the server runs on **port 3010**.
 GET http://localhost:3010/tracks
 ```
 
-**POST a new track:**
+**POST seed database:**
 
 ```http
-POST http://localhost:3010/tracks/new
-Content-Type: application/json
-
-{
-  "newTrack": {
-    "name": "Raabta",
-    "genre": "Romantic",
-    "release_year": 2012,
-    "artist": "Arijit Singh",
-    "album": "Agent Vinod",
-    "duration": 4
-  }
-}
-```
-
-**POST update track:**
-
-```http
-POST http://localhost:3010/tracks/update/12
-Content-Type: application/json
-
-{
-  "name": "Raabta Remix",
-  "genre": "Romantic",
-  "release_year": 2013
-}
-```
-
-**POST delete track:**
-
-```http
-POST http://localhost:3010/tracks/delete/12
+POST http://localhost:3010/tracks/seed
 ```
 
 ---
 
 ### 📝 Posts API (`postsAPI.js`)
 
-| Method | Endpoint            | Description       |
-| ------ | ------------------- | ----------------- |
-| GET    | `/posts`            | Get all posts     |
-| POST   | `/posts/new`        | Add a new post    |
-| POST   | `/posts/update/:id` | Update post by ID |
-| POST   | `/posts/delete/:id` | Delete post by ID |
+| Method | Endpoint            | Description                          |
+| ------ | ------------------- | ------------------------------------ |
+| GET    | `/posts`            | Get all posts                        |
+| POST   | `/posts/new`        | Add a new post                       |
+| POST   | `/posts/update/:id` | Update post by ID                    |
+| POST   | `/posts/delete`     | Delete post by ID                    |
+| POST   | `/posts/seed`       | Seed posts database with sample data |
 
 #### Example Requests:
 
@@ -149,48 +120,23 @@ POST http://localhost:3010/tracks/delete/12
 GET http://localhost:3010/posts
 ```
 
-**POST a new post:**
+**POST seed database:**
 
 ```http
-POST http://localhost:3010/posts/new
-Content-Type: application/json
-
-{
-  "newPost": {
-    "title": "My First Blog",
-    "content": "This is a sample post.",
-    "author": "John Doe"
-  }
-}
-```
-
-**POST update post:**
-
-```http
-POST http://localhost:3010/posts/update/5
-Content-Type: application/json
-
-{
-  "title": "Updated Blog Title"
-}
-```
-
-**POST delete post:**
-
-```http
-POST http://localhost:3010/posts/delete/5
+POST http://localhost:3010/posts/seed
 ```
 
 ---
 
 ### 👨‍💼 Employee API (`employeeAPI.js`)
 
-| Method | Endpoint                | Description           |
-| ------ | ----------------------- | --------------------- |
-| GET    | `/employees`            | Get all employees     |
-| POST   | `/employees/new`        | Add a new employee    |
-| POST   | `/employees/update/:id` | Update employee by ID |
-| POST   | `/employees/delete/:id` | Delete employee by ID |
+| Method | Endpoint                | Description                              |
+| ------ | ----------------------- | ---------------------------------------- |
+| GET    | `/employees`            | Get all employees                        |
+| POST   | `/employees/new`        | Add a new employee                       |
+| POST   | `/employees/update/:id` | Update employee by ID                    |
+| POST   | `/employees/delete`     | Delete employee by ID                    |
+| POST   | `/employees/seed`       | Seed employees database with sample data |
 
 #### Example Requests:
 
@@ -200,36 +146,10 @@ POST http://localhost:3010/posts/delete/5
 GET http://localhost:3010/employees
 ```
 
-**POST a new employee:**
+**POST seed database:**
 
 ```http
-POST http://localhost:3010/employees/new
-Content-Type: application/json
-
-{
-  "newEmployee": {
-    "name": "Alice",
-    "designation": "Software Engineer",
-    "salary": 60000
-  }
-}
-```
-
-**POST update employee:**
-
-```http
-POST http://localhost:3010/employees/update/3
-Content-Type: application/json
-
-{
-  "salary": 70000
-}
-```
-
-**POST delete employee:**
-
-```http
-POST http://localhost:3010/employees/delete/3
+POST http://localhost:3010/employees/seed
 ```
 
 ---
@@ -240,27 +160,32 @@ POST http://localhost:3010/employees/delete/3
 
    - Create a new file in `/models` (e.g., `product.model.js`).
    - Define the Sequelize schema.
+   - Add associations if needed (e.g., `belongsTo`, `hasMany`).
 
 2. **Add new routes**:
 
-   - Create a new API file in `/routes` (e.g., `productAPI.js`).
-   - Add CRUD routes.
+   - Create a new API file (e.g., `productAPI.js`) in the root directory.
+   - Add necessary CRUD operations.
+   - Import and use the new route in `index.js`.
 
 3. **Integrate with the main app**:
-   - Import the new API in `app.js` and use it with `app.use()`.
+   - Import the new API in `index.js`.
+   - Register it using `app.use()`.
 
 ---
 
 ## 🎯 Future Enhancements
 
-✅ Authentication & Authorization (JWT)  
-✅ API Documentation (Swagger)  
-✅ Docker Support
+✅ **Authentication & Authorization** (JWT for secure API access)  
+✅ **API Documentation** (Swagger integration for better documentation)  
+✅ **Pagination & Filtering** (For better handling of large datasets)  
+✅ **Docker Support** (Containerized deployment)  
+✅ **Unit & Integration Tests** (Using Jest/Mocha)
 
 ---
 
 ## 💡 Conclusion
 
-This project provides a simple yet scalable way to manage multiple datasets with CRUD operations using **Express, SQLite, and Sequelize**. 🚀
+This project provides a **modular, scalable backend** for managing multiple datasets with **CRUD operations** using **Express, SQLite, and Sequelize**. 🚀
 
-Feel free to contribute or modify as per your requirements!
+Feel free to contribute or modify as per your requirements! 🎯

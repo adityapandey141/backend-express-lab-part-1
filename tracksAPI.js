@@ -6,7 +6,7 @@ const { where } = require("sequelize");
 const route = express.Router();
 route.use(express.json());
 
-route.get("/seed_tracks", async (req, res) => {
+route.get("/seed", async (req, res) => {
   try {
     await tracksDB.sync({ force: true });
     await tracks.bulkCreate(trackData);
@@ -78,9 +78,9 @@ async function deleteTrack(id) {
   return { message: "Track deleted Successfully !" };
 }
 
-route.post("/delete/:id", async (req, res) => {
+route.post("/delete", async (req, res) => {
   try {
-    let id = parseInt(req.params.id);
+    let id = parseInt(req.body.id);
     let response = await deleteTrack(id);
     if (!response.message) {
       return res.status(404).json({ message: "Track not found !" });
