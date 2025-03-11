@@ -2,13 +2,18 @@
 
 ## 📌 Project Overview
 
-This project is a backend API built with **Node.js**, **Express**, **SQLite**, and **Sequelize**. It performs **CRUD operations** on multiple datasets, including:
+This project is a backend API built with **Node.js**, **Express.js**, **SQLite**, and **Sequelize**. It performs **CRUD operations** on multiple datasets, including:
 
 - Tracks
 - Posts
 - Employees
 
-The project includes **multiple API files** and **multiple database models** for structured code management.
+The project includes:  
+✅ **Multiple API files** for modular structure  
+✅ **Separate database files** for each dataset  
+✅ **Sequelize integration** for database operations
+
+---
 
 ## 🛠️ Tech Stack
 
@@ -16,25 +21,40 @@ The project includes **multiple API files** and **multiple database models** for
 - **Database**: SQLite
 - **ORM**: Sequelize
 
+---
+
 ## 📂 Project Structure
 
 ```
 /project-root
+│── /databases
+│   ├── tracksDB.js
+│   ├── postsDB.js
+│   ├── employeesDB.js
+│
+│── /dataset
+│   ├── trackData.js
+│   ├── postData.js
+│   ├── employeeData.js
+│
+│── /lib
+│   ├── index.js  (Sequelize initialization)
+│
 │── /models
 │   ├── track.model.js
 │   ├── post.model.js
 │   ├── employee.model.js
 │
-│── /routes
-│   ├── trackAPI.js
-│   ├── postsAPI.js
-│   ├── employeeAPI.js
-│
-│── app.js
+│── trackAPI.js
+│── postsAPI.js
+│── employeeAPI.js
+│── index.js
 │── package.json
 │── README.md
-│── database.sqlite (auto-generated)
+
 ```
+
+---
 
 ## 🚀 Getting Started
 
