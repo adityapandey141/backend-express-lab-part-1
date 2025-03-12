@@ -100,6 +100,48 @@ GET http://localhost:3010/tracks
 POST http://localhost:3010/tracks/seed
 ```
 
+**POST a new track:**
+
+```http
+POST http://localhost:3010/tracks/new
+Content-Type: application/json
+
+{
+  "newTrack": {
+    "name": "Raabta",
+    "genre": "Romantic",
+    "release_year": 2012,
+    "artist": "Arijit Singh",
+    "album": "Agent Vinod",
+    "duration": 4
+  }
+}
+```
+
+**POST update track:**
+
+```http
+POST http://localhost:3010/tracks/update/12
+Content-Type: application/json
+
+{
+  "name": "Raabta Remix",
+  "genre": "Romantic",
+  "release_year": 2013
+}
+```
+
+**POST delete track:**
+
+```http
+POST http://localhost:3010/tracks/delete
+Content-Type: application/json
+
+{
+  "id": 11
+}
+```
+
 ---
 
 ### 📝 Posts API (`postsAPI.js`)
@@ -124,6 +166,43 @@ GET http://localhost:3010/posts
 
 ```http
 POST http://localhost:3010/posts/seed
+```
+
+**POST a new posts:**
+
+```http
+POST http://localhost:3010/posts/new
+Content-Type: application/json
+
+{
+  "newPost": {
+    title: "Advanced CSS Layouts",
+    content: "Learn how to create complex layouts using CSS Grid and Flexbox.",
+    author: "Hannah Lewis",
+  }
+}
+```
+
+**POST update posts:**
+
+```http
+POST http://localhost:3010/posts/update/12
+Content-Type: application/json
+
+{
+  title: "Advanced CSS Layouts",
+}
+```
+
+**POST delete posts:**
+
+```http
+POST http://localhost:3010/posts/delete
+Content-Type: application/json
+
+{
+  "id": 11
+}
 ```
 
 ---
