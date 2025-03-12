@@ -12,6 +12,7 @@ app.use(cors());
 
 const trackAPI = require("./tracksAPI.js");
 const postAPI = require("./postAPI.js");
+const employeeAPI = require("./employeeAPI.js");
 
 app.get("/", (req, res) => {
   res.send("Hello , working");
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 
 app.use("/tracks", trackAPI);
 app.use("/posts", postAPI);
+app.use("/employees", employeeAPI);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

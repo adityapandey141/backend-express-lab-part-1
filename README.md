@@ -231,6 +231,44 @@ GET http://localhost:3010/employees
 POST http://localhost:3010/employees/seed
 ```
 
+**POST a new employees:**
+
+```http
+POST http://localhost:3010/employees/new
+Content-Type: application/json
+
+{
+  "newEmployee": {
+        "name": "Jane Smith",
+        "designation":"Software Engineer",
+        "department": "Engineering",
+        "salary": 75000
+  }
+}
+```
+
+**POST update employees:**
+
+```http
+POST http://localhost:3010/employees/update/12
+Content-Type: application/json
+
+{
+  name: "Aditya Pandey ",
+}
+```
+
+**POST delete employees:**
+
+```http
+POST http://localhost:3010/employees/delete
+Content-Type: application/json
+
+{
+  "id": 11
+}
+```
+
 ---
 
 ## 🛠️ How to Modify & Expand the Project
